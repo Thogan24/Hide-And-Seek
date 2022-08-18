@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     public float shootingTime = 0f;
     public float recoilAmount = 0f;
     public Vector3 hitRecoilPoint;
+    public float movingAccuracy = 1f;
 
     public Camera fpsCam;
 
@@ -27,7 +28,7 @@ public class Gun : MonoBehaviour
             cooldown = false;
         }
 
-        if (time > 0.5f)
+        if (time > 0.2f)
         {
             recoilCooldown = false;           
             shootingTime = 0f;
@@ -56,7 +57,7 @@ public class Gun : MonoBehaviour
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             //Debug.Log(hit.transform);
-            hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f, recoilAmount + (Random.Range(-100, 100) * 0.001f), 0);
+            hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy), 0);
             Debug.Log(hitRecoilPoint);
             GameObject hitCircle = Instantiate(hitCircleObject, hitRecoilPoint, Quaternion.LookRotation(hit.normal));
             Destroy(hitCircle, 5f);

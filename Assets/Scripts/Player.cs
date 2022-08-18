@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
 
     public CharacterController controller;
+    public Gun Gun;
+    public GameObject GunObject;
 
     public int playerHealth = 100;
     public int playerDamage = 1;
@@ -23,6 +25,10 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     public bool isGrounded;
 
+    private void Start()
+    {
+        Gun = GunObject.GetComponent<Gun>();
+    }
     void Update()
     {
         //Creates an invisible sphere below the player in which checks whats below it.
@@ -39,6 +45,14 @@ public class Player : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         Vector3 move = transform.right * x + transform.forward * z;
+        if (move.magnitude > 0)
+        {
+            Gun.movingAccuracy = (move.magnitude + 1) * 10;
+        }
+        else
+        {
+            Gun.movingAccuracy = 1;
+        }
 
         controller.Move(move * speed * Time.deltaTime);
 

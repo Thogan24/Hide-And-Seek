@@ -560,6 +560,14 @@ MonoBehaviour:
   damage: 10
   range: 100
   hitCircleObject: {fileID: 8472330438525306023, guid: 4c681298b71bfb245b857fa89efc2a25, type: 3}
+  cooldown: 1
+  recoilCooldown: 1
+  time: 0
+  isShooting: 0
+  shootingTime: 0
+  recoilAmount: 0
+  hitRecoilPoint: {x: 0, y: 0, z: 0}
+  movingAccuracy: 1
   fpsCam: {fileID: 963194227}
 --- !u!1 &1523790899
 GameObject:
@@ -594,6 +602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1523790901}
+  Gun: {fileID: 0}
+  GunObject: {fileID: 1123353758}
   playerHealth: 100
   playerDamage: 1
   Target: {fileID: 0}
