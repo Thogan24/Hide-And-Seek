@@ -5,14 +5,22 @@ public class Gun : MonoBehaviour
     public float damage = 10f;
     public float range = 100f;
     public GameObject hitCircleObject;
+    public bool cooldown = true;
+    public float time = 0f;
 
     public Camera fpsCam;
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        time += Time.deltaTime;
+        if (time > 0.1f)
         {
-            //Debug.Log("ok");
+            cooldown = false;
+        }
+        if (Input.GetMouseButton(0) && cooldown == false)
+        {
+            cooldown = true;
+            time = 0f;
             Shoot();
         }
     }
