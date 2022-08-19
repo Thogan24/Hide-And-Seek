@@ -557,6 +557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e185716dd51380148a2c596b8598fd5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScript: {fileID: 0}
+  player: {fileID: 1523790899}
   damage: 10
   range: 100
   hitCircleObject: {fileID: 8472330438525306023, guid: 4c681298b71bfb245b857fa89efc2a25, type: 3}
@@ -568,6 +570,7 @@ MonoBehaviour:
   recoilAmount: 0
   hitRecoilPoint: {x: 0, y: 0, z: 0}
   movingAccuracy: 1
+  jumpingAccuracy: 1
   fpsCam: {fileID: 963194227}
 --- !u!1 &1523790899
 GameObject:

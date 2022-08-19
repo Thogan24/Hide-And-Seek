@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    public Player playerScript;
+    public GameObject player;
     public float damage = 10f;
     public float range = 100f;
     public GameObject hitCircleObject;
@@ -13,11 +15,24 @@ public class Gun : MonoBehaviour
     public float recoilAmount = 0f;
     public Vector3 hitRecoilPoint;
     public float movingAccuracy = 1f;
+    public float jumpingAccuracy = 1f;
 
     public Camera fpsCam;
 
+    private void Start()
+    {
+        playerScript = player.GetComponent<Player>();
+    }
     void Update()
     {
+        if (playerScript.isGrounded == false)
+        {
+            jumpingAccuracy = 20f;
+        }
+        else
+        {
+            jumpingAccuracy = 1f;
+        }
         time += Time.deltaTime;
         if (isShooting == true){
             shootingTime += Time.deltaTime;
@@ -53,11 +68,15 @@ public class Gun : MonoBehaviour
     void Shoot()
     {
         RaycastHit hit;
-        
+        if (jumpingAccuracy > 1f && movingAccuracy > 1f)
+        {
+            jumpingAccuracy = 10f;
+            movingAccuracy = 5f;
+        }
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             //Debug.Log(hit.transform);
-            hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy), 0);
+            hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy), 0);
             Debug.Log(hitRecoilPoint);
             GameObject hitCircle = Instantiate(hitCircleObject, hitRecoilPoint, Quaternion.LookRotation(hit.normal));
             Destroy(hitCircle, 5f);
