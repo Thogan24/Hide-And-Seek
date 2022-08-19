@@ -64,7 +64,6 @@ public class Player : MonoBehaviour
 
 
         velocity.y += gravity * Time.deltaTime;
-        Debug.Log(velocity.y);
 
         controller.Move(velocity * Time.deltaTime); // We multiply by 2 cause the formula is delta y = 1/2g * t^2
 
