@@ -84,13 +84,21 @@ public class Gun : MonoBehaviour
             jumpingAccuracy = 10f;
             movingAccuracy = 5f;
         }
+
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             //Debug.Log(hit.transform);
             hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy), 0);
             //Debug.Log(hitRecoilPoint);
+            
             GameObject hitCircle = Instantiate(hitCircleObject, hitRecoilPoint, Quaternion.LookRotation(hit.normal));
             Destroy(hitCircle, 5f);
+
+            EnemyScript enemy = hit.transform.GetComponent<EnemyScript>();
+            if(enemy != null)
+            {
+                enemy.TakeDamage();
+            }
         }
     }
 }
