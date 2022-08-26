@@ -87,17 +87,18 @@ public class Gun : MonoBehaviour
 
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            //Debug.Log(hit.transform);
+            
             hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy), 0);
             //Debug.Log(hitRecoilPoint);
             
             GameObject hitCircle = Instantiate(hitCircleObject, hitRecoilPoint, Quaternion.LookRotation(hit.normal));
             Destroy(hitCircle, 5f);
-
+            Debug.Log(hit);
             EnemyScript enemy = hit.transform.GetComponent<EnemyScript>();
+            // Registers enemy as the hit transform, not the individual body parts
             if(enemy != null)
             {
-                enemy.TakeDamage();
+                enemy.TakeDamage(hit.transform.gameObject.GetComponent<Collider>());
             }
         }
     }

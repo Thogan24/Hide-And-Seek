@@ -23,13 +23,14 @@ public class EnemyScript : MonoBehaviour
             DPS = 999999 - EnemyHealth;
             EnemyHealth = 999999f;
         }
-        Debug.Log(DPS);
+        //Debug.Log(DPS);
 
         DPSDisplayer.text = DPS.ToString();
     }
 
-    public void TakeDamage()
+    public void TakeDamage(Collider collider)
     {
+        Debug.Log(collider);
         EnemyHealth -= 10;
     }
 }
