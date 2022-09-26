@@ -84,11 +84,12 @@ public class Gun : MonoBehaviour
             jumpingAccuracy = 10f;
             movingAccuracy = 5f;
         }
-
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
+        //Debug.Log(jumpingAccuracy + " " + movingAccuracy + " " + recoilAccuracy);
+        Debug.Log(new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy), 0));
+        if (Physics.Raycast(fpsCam.transform.position, new Vector3((Random.Range(-100, 100) * 0.0001f * movingAccuracy * jumpingAccuracy * recoilAccuracy) + fpsCam.transform.forward.x, (recoilAmount + (Random.Range(-100, 100) * 0.0001f * movingAccuracy * jumpingAccuracy * recoilAccuracy)) + fpsCam.transform.forward.y, fpsCam.transform.forward.z), out hit, range))
         {
             
-            hitRecoilPoint = hit.point + new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy), 0);
+            hitRecoilPoint = hit.point;
             //Debug.Log(hitRecoilPoint);
             
             GameObject hitCircle = Instantiate(hitCircleObject, hitRecoilPoint, Quaternion.LookRotation(hit.normal));
