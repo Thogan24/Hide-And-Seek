@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public Gun Gun;
     public GameObject GunObject;
 
+    [Header("PlayerStats")]
     public int playerHealth = 100;
     public int playerDamage = 1;
     public GameObject Target;
@@ -14,16 +15,27 @@ public class Player : MonoBehaviour
     public GameObject player;
 
 
-    // Movement Variable
+    [Header("PlayerMovement")]
     public float speed = 30f;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    public float wallrunSpeed;
 
     Vector3 velocity;
     public bool isGrounded;
+
+    public enum MovementState
+    {
+        walking,
+        wallrunning
+    }
+
+    public bool wallrunning;
+
+
 
     private void Start()
     {
