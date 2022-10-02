@@ -85,8 +85,8 @@ public class Gun : MonoBehaviour
             movingAccuracy = 5f;
         }
         //Debug.Log(jumpingAccuracy + " " + movingAccuracy + " " + recoilAccuracy);
-        Debug.Log(new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy), 0));
-        if (Physics.Raycast(fpsCam.transform.position, new Vector3((Random.Range(-100, 100) * 0.0001f * movingAccuracy * jumpingAccuracy * recoilAccuracy) + fpsCam.transform.forward.x, (recoilAmount + (Random.Range(-100, 100) * 0.0001f * movingAccuracy * jumpingAccuracy * recoilAccuracy)) + fpsCam.transform.forward.y, fpsCam.transform.forward.z), out hit, range))
+        //Debug.Log(new Vector3(Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy, recoilAmount + (Random.Range(-100, 100) * 0.001f * movingAccuracy * jumpingAccuracy * recoilAccuracy), 0));
+        if (Physics.Raycast(fpsCam.transform.position, new Vector3((Random.Range(-100, 100) * 0.0001f * movingAccuracy * jumpingAccuracy * recoilAccuracy) + fpsCam.transform.forward.x, (recoilAmount * 0.1f + (Random.Range(-100, 100) * 0.0001f * movingAccuracy * jumpingAccuracy * recoilAccuracy)) + fpsCam.transform.forward.y, fpsCam.transform.forward.z), out hit, range))
         {
             
             hitRecoilPoint = hit.point;
