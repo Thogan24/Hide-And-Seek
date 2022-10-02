@@ -1343,6 +1343,7 @@ GameObject:
   - component: {fileID: 1523790902}
   - component: {fileID: 1523790901}
   - component: {fileID: 1523790900}
+  - component: {fileID: 1523790905}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1378,7 +1379,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+  wallrunSpeed: 8.5
   isGrounded: 0
+  state: 0
+  wallrunning: 0
 --- !u!143 &1523790901
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1464,6 +1468,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1523790905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523790899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ef5abdc6a751345bcc873517c331a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whatIsWall:
+    serializedVersion: 2
+    m_Bits: 128
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 64
+  wallRunForce: 200
+  maxWallRunTime: 1.5
+  horizontalInput: 0
+  wallCheckDistance: 0.7
+  minJumpHeight: 2
+  orientation: {fileID: 1523790904}
 --- !u!1 &1635112675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,7 +1632,7 @@ GameObject:
   - component: {fileID: 1651799925}
   - component: {fileID: 1651799924}
   - component: {fileID: 1651799923}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall 2
   m_TagString: Environment
   m_Icon: {fileID: 0}
@@ -2167,7 +2195,7 @@ GameObject:
   - component: {fileID: 2147030758}
   - component: {fileID: 2147030757}
   - component: {fileID: 2147030756}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wall
   m_TagString: Environment
   m_Icon: {fileID: 0}

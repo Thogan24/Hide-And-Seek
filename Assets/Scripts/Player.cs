@@ -22,10 +22,13 @@ public class Player : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
+    private float moveSpeed;
     public float wallrunSpeed;
 
     Vector3 velocity;
     public bool isGrounded;
+
+    public MovementState state;
 
     public enum MovementState
     {
@@ -98,6 +101,15 @@ public class Player : MonoBehaviour
         {
             particleEffects.SetActive(false);
         }*/
+    }
+
+    void StateHandler()
+    {
+        if (wallrunning)
+        {
+            state = MovementState.wallrunning;
+            moveSpeed = wallrunSpeed;
+        }
     }
 
     void DamagePlayer()
