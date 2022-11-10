@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     public LayerMask groundMask;
     private float moveSpeed;
     public float wallrunSpeed;
+    public float coyoteTimer;
+    public bool jumpedOnce;
+    public float jumpedOnceTimer = 0f;
+    public bool jumpedTwice;
 
     Vector3 velocity;
     public bool isGrounded;
@@ -46,12 +50,29 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        Debug.Log(coyoteTimer);
+        Debug.Log("Jumped Once: " + jumpedOnce);
+        Debug.Log("Jumped Twice: " + jumpedTwice);
+        Debug.Log("isGrounded: " + isGrounded);
         //Creates an invisible sphere below the player in which checks whats below it.
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f; // Should be 0 but -2 works better
+        }
+        if (isGrounded)
+        {
+            if (jumpedOnceTimer <= 0)
+            {
+                jumpedOnce = false;
+            }
+            jumpedTwice = false;
+            coyoteTimer = 0.5f;
+        }
+        else
+        {
+            coyoteTimer -= Time.deltaTime;
         }
 
         // Movement
@@ -71,12 +92,27 @@ public class Player : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        
+
+        if(Input.GetButtonDown("Jump") && jumpedOnce == true && jumpedTwice == false)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            
+            jumpedTwice = true;
         }
 
+        if (Input.GetButtonDown("Jump") && (isGrounded || coyoteTimer >= 0) && jumpedOnce == false)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            jumpedOnce = true;
+            jumpedOnceTimer = 0.2f;
+        }
+
+        jumpedOnceTimer -= Time.deltaTime;
+
+        /*if(isGrounded == false)
+        {
+            jumpedOnce = true;
+        }*/
 
         velocity.y += gravity * Time.deltaTime;
 
