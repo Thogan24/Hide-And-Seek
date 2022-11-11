@@ -4,6 +4,8 @@ public class Gun : MonoBehaviour
 {
     public Player playerScript;
     public GameObject player;
+    public SpeedButton speedButtonScript;
+    public GameObject speedButton;
     public float damage = 10f;
     public float range = 100f;
     public GameObject hitCircleObject;
@@ -23,6 +25,7 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         playerScript = player.GetComponent<Player>();
+        speedButtonScript = speedButton.GetComponent<SpeedButton>();
     }
     void Update()
     {
@@ -101,6 +104,11 @@ public class Gun : MonoBehaviour
             {
                 enemy.TakeDamage(hit.transform.gameObject.GetComponent<Collider>());
             }
+            /*speedButtonScript button = hit.transform.GetComponent<speedButtonScript>();
+            if(button != null)
+            {
+                button.ButtonPressed();
+            }*/
         }
     }
 }

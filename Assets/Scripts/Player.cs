@@ -100,19 +100,21 @@ public class Player : MonoBehaviour
             jumpedTwice = true;
         }
 
+        if (!isGrounded && coyoteTimer < 0)
+        {
+            jumpedOnce = true;
+        }
+
         if (Input.GetButtonDown("Jump") && (isGrounded || coyoteTimer >= 0) && jumpedOnce == false)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpedOnce = true;
             jumpedOnceTimer = 0.2f;
+            
+            //GetComponent<Rigidbody>().AddForce(player.eulerAngles.x);
         }
 
         jumpedOnceTimer -= Time.deltaTime;
-
-        /*if(isGrounded == false)
-        {
-            jumpedOnce = true;
-        }*/
 
         velocity.y += gravity * Time.deltaTime;
 
