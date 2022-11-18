@@ -102,6 +102,7 @@ public class Gun : MonoBehaviour
             // Registers enemy as the hit transform, not the individual body parts
             if(enemy != null)
             {
+                //enemy.bodyHitboxes.
                 enemy.TakeDamage(hit.transform.gameObject.GetComponent<Collider>());
             }
             /*speedButtonScript button = hit.transform.GetComponent<speedButtonScript>();

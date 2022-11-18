@@ -8,6 +8,8 @@ public class EnemyScript : MonoBehaviour
     public float DPS = 0f;
     public TextMesh DPSDisplayer;
     public GameObject DPSDisplayerObject;
+    public Collider[] bodyHitboxes;
+    public Collider[] headHitboxes;
 
     void Start()
     {
