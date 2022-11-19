@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748171, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1282,7 +1282,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23514
+  m_Name: pb_Mesh20458
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2600,8 +2600,11 @@ MonoBehaviour:
   DPS: 0
   DPSDisplayer: {fileID: 1914454508}
   DPSDisplayerObject: {fileID: 1914454506}
-  bodyHitboxes: []
-  headHitboxes: []
+  bodyHitboxes:
+  - {fileID: 1061305111}
+  headHitboxes:
+  - {fileID: 626771632}
+  neckHitboxes: []
 --- !u!4 &1117680564
 Transform:
   m_ObjectHideFlags: 0
@@ -2747,23 +2750,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerScript: {fileID: 0}
-  player: {fileID: 1523790899}
   speedButtonScript: {fileID: 0}
+  player: {fileID: 1523790899}
   speedButton: {fileID: 1884099570}
+  hitCircleObject: {fileID: 8472330438525306023, guid: 4c681298b71bfb245b857fa89efc2a25, type: 3}
+  fpsCam: {fileID: 963194227}
+  hitRecoilPoint: {x: 0, y: 0, z: 0}
   damage: 10
   range: 100
-  hitCircleObject: {fileID: 8472330438525306023, guid: 4c681298b71bfb245b857fa89efc2a25, type: 3}
   cooldown: 1
   recoilCooldown: 1
   time: 0
   isShooting: 0
   shootingTime: 0
   recoilAmount: 0
-  hitRecoilPoint: {x: 0, y: 0, z: 0}
   movingAccuracy: 1
   jumpingAccuracy: 1
   recoilAccuracy: 1
-  fpsCam: {fileID: 963194227}
 --- !u!1 &1213862839
 GameObject:
   m_ObjectHideFlags: 0
@@ -3173,7 +3176,7 @@ MonoBehaviour:
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   wallrunSpeed: 8.5
   coyoteTimer: 0
   jumpedOnce: 0
@@ -3196,7 +3199,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 1
+  m_StepOffset: 0.6
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -3603,7 +3606,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23436
+  m_Name: pb_Mesh20380
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

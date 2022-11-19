@@ -10,6 +10,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject DPSDisplayerObject;
     public Collider[] bodyHitboxes;
     public Collider[] headHitboxes;
+    public Collider[] neckHitboxes;
 
     void Start()
     {
@@ -25,9 +26,9 @@ public class EnemyScript : MonoBehaviour
             DPS = 999999 - EnemyHealth;
             EnemyHealth = 999999f;
         }
-        //Debug.Log(DPS);
 
         DPSDisplayer.text = DPS.ToString();
+        
     }
 
     public void TakeDamage(Collider collider)

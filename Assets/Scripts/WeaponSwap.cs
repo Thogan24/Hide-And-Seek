@@ -8,10 +8,8 @@ public class WeaponSwap : MonoBehaviour
         SelectWeapon();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(transform.childCount);
         int previousSelectedWeapon = selectedWeapon;
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {

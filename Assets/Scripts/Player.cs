@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
+    [Header("Objects")]
     public CharacterController controller;
     public Gun Gun;
     public GameObject GunObject;
@@ -50,10 +50,13 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        /*
         Debug.Log(coyoteTimer);
         Debug.Log("Jumped Once: " + jumpedOnce);
         Debug.Log("Jumped Twice: " + jumpedTwice);
         Debug.Log("isGrounded: " + isGrounded);
+        */
+
         //Creates an invisible sphere below the player in which checks whats below it.
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
