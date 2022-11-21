@@ -31,9 +31,8 @@ public class EnemyScript : MonoBehaviour
         
     }
 
-    public void TakeDamage(Collider collider)
+    public void TakeDamage(int multiplier)
     {
-        Debug.Log(collider);
-        EnemyHealth -= 10;
+        EnemyHealth -= 10 * multiplier;
     }
 }

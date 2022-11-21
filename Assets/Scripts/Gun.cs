@@ -97,30 +97,33 @@ public class Gun : MonoBehaviour
                 // Head Shots
                 foreach (Collider h in enemy.headHitboxes)
                 {
-                    if (h.Equals(enemy))
+                    if (h.Equals(hit.collider))
                     {
                         Debug.Log("IT WORKED!!!! (HEAD SHOT!!!)");
+                        enemy.TakeDamage(10);
                     }
                 }
 
                 // Neck Shots
                 foreach (Collider n in enemy.neckHitboxes)
                 {
-                    if (n.Equals(enemy))
+                    if (n.Equals(hit.collider))
                     {
                         Debug.Log("IT WORKED!!!! (NECK SHOT!!!)");
+                        enemy.TakeDamage(8);
                     }
                 }
 
                 // Body Shots
                 foreach (Collider c in enemy.bodyHitboxes)
                 {
-                    if (c.Equals(enemy))
+                    if (c.Equals(hit.collider))
                     {
                         Debug.Log("IT WORKED!!!!");
+                        enemy.TakeDamage(5);
                     }
                 }
-                enemy.TakeDamage(hit.transform.gameObject.GetComponent<Collider>());
+                
             }
 
 
