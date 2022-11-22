@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
+    [Header("Objects")]
     public Player playerScript;
     public SpeedButton speedButtonScript;
     public GameObject player;
@@ -9,6 +10,8 @@ public class Gun : MonoBehaviour
     public GameObject hitCircleObject;
     public Camera fpsCam;
     public Vector3 hitRecoilPoint;
+
+    [Header("Variables")]
     public float damage = 10f;
     public float range = 100f;
     public bool cooldown = true;

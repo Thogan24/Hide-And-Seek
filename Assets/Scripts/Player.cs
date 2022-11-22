@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public GameObject Target;
     public GameObject particleEffects;
     public GameObject player;
+    //public GameObject particleSystem;
 
 
     [Header("PlayerMovement")]
@@ -113,8 +114,6 @@ public class Player : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpedOnce = true;
             jumpedOnceTimer = 0.2f;
-            
-            //GetComponent<Rigidbody>().AddForce(player.eulerAngles.x);
         }
 
         jumpedOnceTimer -= Time.deltaTime;
@@ -123,25 +122,6 @@ public class Player : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime); // We multiply by 2 cause the formula is delta y = 1/2g * t^2
 
-        
-
-        /*if (transform.GetComponent<Collider>().bounds.Intersects(Target.GetComponent<Collider>().bounds))
-        {
-            //particleEffects.SetActive(true);
-            DamagePlayer();
-        }
-        else
-        {
-            //particleEffects.SetActive(false);
-        }
-        if (transform.GetChild(3).GetComponent<Collider>().bounds.Intersects(Target.GetComponent<Collider>().bounds))
-        {
-            particleEffects.SetActive(true);
-        }
-        else
-        {
-            particleEffects.SetActive(false);
-        }*/
     }
 
     void StateHandler()
@@ -157,6 +137,8 @@ public class Player : MonoBehaviour
     {
         Debug.Log(playerHealth);
         playerHealth--;
+        // Make start colors switch for particle system
+
     }
 
 
