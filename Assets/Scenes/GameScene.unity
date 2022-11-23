@@ -2660,7 +2660,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -10376,7 +10376,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20666
+  m_Name: pb_Mesh20674
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -13472,6 +13472,7 @@ MonoBehaviour:
   Target: {fileID: 0}
   particleEffects: {fileID: 0}
   player: {fileID: 1523790899}
+  hitParticles: {fileID: 354914478}
   speed: 16
   gravity: -9.81
   jumpHeight: 5

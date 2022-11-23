@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public GameObject Target;
     public GameObject particleEffects;
     public GameObject player;
-    //public GameObject particleSystem;
+    public ParticleSystem hitParticles;
 
 
     [Header("PlayerMovement")]
@@ -29,6 +29,11 @@ public class Player : MonoBehaviour
     public bool jumpedOnce;
     public float jumpedOnceTimer = 0f;
     public bool jumpedTwice;
+    public float lastFrameVelocity = 0f;
+    public int FallDamage = 10;
+    public float particleTimer = 0f;
+    public float particleTime = 2f;
+    
 
     Vector3 velocity;
     public bool isGrounded;
@@ -48,6 +53,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         Gun = GunObject.GetComponent<Gun>();
+        Debug.Log(playerHealth);
     }
     void Update()
     {
@@ -96,9 +102,9 @@ public class Player : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
-        
 
-        if(Input.GetButtonDown("Jump") && jumpedOnce == true && jumpedTwice == false)
+
+        if (Input.GetButtonDown("Jump") && jumpedOnce == true && jumpedTwice == false)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpedTwice = true;
@@ -122,6 +128,20 @@ public class Player : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime); // We multiply by 2 cause the formula is delta y = 1/2g * t^2
 
+
+        // Fall Damage
+        if (lastFrameVelocity < -20 && isGrounded)
+        {
+            DamagePlayer(FallDamage * (int)lastFrameVelocity / -20);
+        }
+        lastFrameVelocity = velocity.y;
+
+        if (particleTimer > 0)
+        {
+            particleTimer -= Time.deltaTime;
+            hitParticles.startSize = 1;
+        }
+        else { hitParticles.startSize = 0; }
     }
 
     void StateHandler()
@@ -133,12 +153,14 @@ public class Player : MonoBehaviour
         }
     }
 
-    void DamagePlayer()
+    void DamagePlayer(int multiplier)
     {
+        playerHealth -= 1 * multiplier;
         Debug.Log(playerHealth);
-        playerHealth--;
-        // Make start colors switch for particle system
 
+        // Make start colors switch for particle system
+        particleTimer = particleTime;
+       
     }
 
 
