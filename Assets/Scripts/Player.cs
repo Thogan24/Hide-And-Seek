@@ -35,7 +35,6 @@ public class Player : MonoBehaviour
     public int FallDamage = 10;
     public float particleTimer = 0f;
     public float particleTime = 2f;
-    public float particleTimer2 = 0f;
     public float particleTime2 = 1f;
     
     
@@ -113,8 +112,14 @@ public class Player : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             jumpedTwice = true;
-            particleTimer2 = particleTime2;
-            doubleJumpParticlesObject.transform.position = transform.position;
+            //particleTimer2 = particleTime2;
+            //doubleJumpParticlesObject.transform.position = transform.position;
+            Debug.Log(transform.position);
+            GameObject doubleJumpPrefab = Instantiate(doubleJumpParticlesObject, transform);
+            doubleJumpPrefab.transform.position = transform.position;
+            Destroy(doubleJumpPrefab, particleTime2);
+            
+
         }
 
         if (!isGrounded && coyoteTimer < 0)
@@ -150,12 +155,7 @@ public class Player : MonoBehaviour
         }
         else { hitParticles.startSize = 0; }
 
-        if (particleTimer2 > 0)
-        {
-            particleTimer2 -= Time.deltaTime;
-            doubleJumpParticles.startSize = 1;
-        }
-        else { doubleJumpParticles.startSize = 0; }
+
     }
 
     void StateHandler()
