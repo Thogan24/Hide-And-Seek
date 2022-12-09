@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class DoubleJumpParticles : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public ParticleSystem doubleJumpParticles;
+    public GameObject doubleJumpParticlesObject;
+    public float particleTime2 = 1f;
+    public GameObject player;
     void Start()
     {
         
     }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(transform.position);
+        GameObject doubleJumpPrefab = Instantiate(doubleJumpParticlesObject, transform);
+        doubleJumpPrefab.transform.position = player.transform.position;
+        Destroy(doubleJumpPrefab, particleTime2);
     }
 }

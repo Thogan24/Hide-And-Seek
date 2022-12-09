@@ -14,8 +14,7 @@ public class Player : MonoBehaviour
     public GameObject particleEffects;
     public GameObject player;
     public ParticleSystem hitParticles;
-    public ParticleSystem doubleJumpParticles;
-    public GameObject doubleJumpParticlesObject;
+
 
 
     [Header("PlayerMovement")]
@@ -35,7 +34,7 @@ public class Player : MonoBehaviour
     public int FallDamage = 10;
     public float particleTimer = 0f;
     public float particleTime = 2f;
-    public float particleTime2 = 1f;
+
     
     
 
@@ -114,11 +113,13 @@ public class Player : MonoBehaviour
             jumpedTwice = true;
             //particleTimer2 = particleTime2;
             //doubleJumpParticlesObject.transform.position = transform.position;
-            Debug.Log(transform.position);
-            GameObject doubleJumpPrefab = Instantiate(doubleJumpParticlesObject, transform);
-            doubleJumpPrefab.transform.position = transform.position;
-            Destroy(doubleJumpPrefab, particleTime2);
-            
+            /*            Debug.Log(transform.position);
+                        GameObject doubleJumpPrefab = Instantiate(doubleJumpParticlesObject, transform);
+                        doubleJumpPrefab.transform.position = transform.position;
+                        Destroy(doubleJumpPrefab, particleTime2);*/
+            this.gameObject.AddComponent<DoubleJumpParticles>();
+
+
 
         }
 
